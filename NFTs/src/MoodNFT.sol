@@ -40,6 +40,8 @@ contract MoodNFT is ERC721 {
 
         if(s_tokenIdToMood[tokenId] == MOOD.HAPPY) {
             s_tokenIdToMood[tokenId] = MOOD.SAD;
+        } else {
+            s_tokenIdToMood[tokenId] = MOOD.SAD;
         }
     }
 
