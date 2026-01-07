@@ -1,6 +1,6 @@
 -include .env
 
-.PHONY: all test clean deploy fund help install snapshot format anvil zktest
+.PHONY: all test clean deploy fund help install snapshot format anvil zktest DeployMood
 
 DEFAULT_ANVIL_KEY := 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 DEFAULT_ZKSYNC_LOCAL_KEY := 0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
@@ -41,3 +41,12 @@ deploy:
 
 mint:
 	@forge script script/Interactions.s.sol:MintBasicNFT ${NETWORK_ARGS}
+
+deployMood:
+	@forge script script/DeployMoodNFT.s.sol:DeployMoodNFT ${NETWORK_ARGS}
+
+mintMood:
+	@cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "mintNFT()" --private-key ${ANVIL_PRIVATE_KEY} --rpc-url http://localhost:8545
+
+flipingMood:
+	@cast send 0x5FbDB2315678afecb367f032d93F642f64180aa3 "flipMood(uint256)" 0 --private-key ${ANVIL_PRIVATE_KEY} --rpc-url http://localhost:8545
